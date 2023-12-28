@@ -13,4 +13,12 @@ public class StreamConfiguration {
     @Value("${spring.cloud.stream.bindings.decisioningResponseSender-out-0.destination}")
     private String decisioningResponseDestination;
 
+    @Value("${spring.cloud.stream.bindings.scoringRequestSender-out-0.destination}")
+    private String scoringRequestDestination;
+
+
+    @Value("${spring.cloud.stream.bindings.scoringResponseListener-in-0.destination}")
+    private String scoringResponseDestination;
+
+
 }

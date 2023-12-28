@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class DecisioningResponseSender {
+public class ScoringRequestSender {
     private final StreamConfiguration streamConfiguration;
     private final StreamBridge streamBridge;
 
     public void send(String data) {
-        boolean isSuccess = streamBridge.send(streamConfiguration.getDecisioningResponseDestination(), data);
+        boolean isSuccess = streamBridge.send(streamConfiguration.getScoringRequestDestination(), data);
         if (!isSuccess) {
             throw new IllegalArgumentException();
         }
-        log.info("Decisioning response was sent");
+        log.info("Scoring message was sent");
     }
 }

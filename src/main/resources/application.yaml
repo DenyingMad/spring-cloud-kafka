@@ -17,6 +17,10 @@ spring:
           destination: blacklist.rs
         consume-in-0:
           destination: test.rq
+        scoringRequestSender-out-0:
+          destination: scoring.rq
+        scoringResponseListener-in-0:
+          destination: scoring.rs
       default:
         binder: kafka
         content-type: application/json
@@ -29,4 +33,4 @@ spring:
         binder:
           autoCreateTopics: true
     function:
-      definition: decisioningRequestListener;blacklistsCheckProcessor;consume
+      definition: decisioningRequestListener;blacklistsCheckProcessor;consume;scoringResponseListener
