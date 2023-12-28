@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    stream:
+      binders:
+        kafka:
+          type: kafka
+          environment:
+            spring.cloud.stream.kafka.binder.brokers: localhost:29092
+      bindings:
+        decisioningRequestListener-in-0:
+          destination: decisioning.rq
+        decisioningResponseSender-out-0:
+          destination: decisioning.rs
+        blacklistsCheckProcessor-in-0:
+          destination: blacklist.rq
+        blacklistsCheckProcessor-out-0:
+          destination: blacklist.rs
+        consume-in-0:
+          destination: test.rq
+      default:
+        binder: kafka
+        content-type: application/json
+        group: decisioning-service
+      kafka:
+        bindings:
+          default:
+            producer:
+              sync: true
+        binder:
+          autoCreateTopics: true
+    function:
+      definition: decisioningRequestListener;blacklistsCheckProcessor;consume
